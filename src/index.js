@@ -9,17 +9,23 @@ import  rootReducer from './reducers';
 
 // function logger(obj,next,action)
 //logger(obj)(next)(action)
-const logger = function({dispatch,getState}){
+// const logger = function({dispatch,getState}){
 
-  return function(next){
+//   return function(next){
 
-    return function(action){
-      // middleware
-      console.log('ACTION_TYPE=',action.type);
-      next(action);
-    }
-  }
+//     return function(action){
+//       // middleware
+//       console.log('ACTION_TYPE=',action.type);
+//       next(action);
+//     }
+//   }
 
+// }
+// Another way 
+const logger = ({dispatch,getState}) => (next) => (action) =>{
+  //logger code
+  console.log('ACTION_TYPE =',action.type);
+  next(action);
 }
 
 const store = createStore(rootReducer,applyMiddleware(logger));
